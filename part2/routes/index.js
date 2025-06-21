@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require('path');
 const mysql = require('mysql2/promise');
 
+// DB connection config
 const db = {
   host: "localhost",
   user: "root",
@@ -10,30 +11,36 @@ const db = {
   database: "DogWalkService"
 };
 
-// GET / => index.html
+// Serve the login page from public/index.html
 router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
-// POST /login
+// Handle login form submission
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   try {
     const conn = await mysql.createConnection(db);
+
+    // Verify credentials against Users table
     const [rows] = await conn.execute(
       "SELECT * FROM Users WHERE username = ? AND password_hash = ?",
       [username, password]
     );
 
+    // If valid login
     if (rows.length === 1) {
       const user = rows[0];
+
+      // save user data to session
       req.session.user = {
         id: user.user_id,
         username: user.username,
         role: user.role
       };
 
+      // redirect based on user role
       if (user.role === 'owner') {
         res.redirect('/owner');
       } else if (user.role === 'walker') {
@@ -42,6 +49,7 @@ router.post('/login', async (req, res) => {
         res.status(403).send("Unknown role");
       }
     } else {
+      // invalid credentials
       res.status(401).send("invalid login credentials");
     }
   } catch (err) {
@@ -50,7 +58,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// GET /owner
+// owner dashboard route (protected)
 router.get('/owner', (req, res) => {
   if (req.session.user?.role === 'owner') {
     res.sendFile(path.join(__dirname, "../public/owner-dashboard.html"));
@@ -59,7 +67,7 @@ router.get('/owner', (req, res) => {
   }
 });
 
-// GET /walker
+// walker dashboard route (protected)
 router.get('/walker', (req, res) => {
   if (req.session.user?.role === 'walker') {
     res.sendFile(path.join(__dirname, "../public/walker-dashboard.html"));
