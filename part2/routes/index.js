@@ -76,7 +76,7 @@ router.get('/walker', (req, res) => {
   }
 });
 
-// GET /logout - clears session and redirects to login page
+// /logout - clears session and redirects to login page
 router.get('/logout', (req, res) => {
   req.session.destroy(err => {
     if (err) {
@@ -84,7 +84,7 @@ router.get('/logout', (req, res) => {
       return res.status(500).send("Failed to logout");
     }
 
-    // Clear the cookie and redirect to login
+    // clear the cookie and redirect to login
     res.clearCookie('connect.sid');
     res.redirect('/');
   });
