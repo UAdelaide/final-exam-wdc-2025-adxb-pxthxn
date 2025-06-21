@@ -52,7 +52,7 @@ async function seedDatabase(connection) {
     ((SELECT dog_id FROM Dogs WHERE name = 'Coco'), '2025-06-12 07:45:00', 20, 'City Park', 'completed')
   `);
 
-  // Users
+  // WalkRatings
   await connection.execute(`
     INSERT INTO WalkRatings (request_id, walker_id, owner_id, rating)
     VALUES
@@ -67,8 +67,7 @@ async function seedDatabase(connection) {
   `);
 }
 
-// Routes
-
+// routes
 app.get("/api/dogs", async (req, res) => {
   try {
     const connection = await mysql.createConnection(dbConfig);
