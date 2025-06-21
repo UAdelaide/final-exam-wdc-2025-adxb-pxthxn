@@ -70,14 +70,14 @@
       const errorMessage = ref('');
       const dogsWithImages = ref([]);
 
-      // Fetch dog list from your API and enrich each with a random photo
+      // fetch dog list from API and enrich each with a random photo
       async function loadDogs() {
         try {
           const res = await fetch('/api/dogs');
-          if (!res.ok) throw new Error("Failed to fetch dogs");
+          if (!res.ok) throw new Error("failed to fetch dogs");
           const dogs = await res.json();
 
-          // Fetch image for each dog
+          // fetch image for each dog
           const enrichedDogs = await Promise.all(
             dogs.map(async dog => {
               try {
