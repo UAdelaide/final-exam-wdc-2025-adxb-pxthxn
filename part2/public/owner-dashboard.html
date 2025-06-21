@@ -76,8 +76,7 @@
 
   <script>
     const { createApp, ref, onMounted } = Vue;
-    const dogs = ref([]);
-    
+
     createApp({
       setup() {
         const form = ref({
@@ -90,6 +89,8 @@
         const walks = ref([]);
         const message = ref('');
         const error = ref('');
+            const dogs = ref([]);
+
 
         async function loadWalks() {
           try {
