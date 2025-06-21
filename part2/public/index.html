@@ -61,17 +61,54 @@
     </div>
   </div>
 
-  <script>
-    const { createApp } = Vue;
-    createApp({
-      data() {
-        return {
-          message: 'Welcome to the Dog Walking Service!',
-          errorMessage: ''
-        };
+<script>
+  const { createApp, ref, onMounted } = Vue;
+
+  createApp({
+    setup() {
+      const message = ref('Welcome to the Dog Walking Service!');
+      const errorMessage = ref('');
+      const dogsWithImages = ref([]);
+
+      // Fetch dog list from your API and enrich each with a random photo
+      async function loadDogs() {
+        try {
+          const res = await fetch('/api/dogs');
+          if (!res.ok) throw new Error("Failed to fetch dogs");
+          const dogs = await res.json();
+
+          // Fetch image for each dog
+          const enrichedDogs = await Promise.all(
+            dogs.map(async dog => {
+              try {
+                const imgRes = await fetch('https://dog.ceo/api/breeds/image/random');
+                const imgData = await imgRes.json();
+                return { ...dog, imageUrl: imgData.message };
+              } catch {
+                return { ...dog, imageUrl: '' };
+              }
+            })
+          );
+
+          dogsWithImages.value = enrichedDogs;
+        } catch (err) {
+          console.error(err);
+          errorMessage.value = err.message;
+        }
       }
-    }).mount('#app');
-  </script>
+
+      onMounted(() => {
+        loadDogs();
+      });
+
+      return {
+        message,
+        errorMessage,
+        dogsWithImages
+      };
+    }
+  }).mount('#app');
+</script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
