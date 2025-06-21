@@ -35,11 +35,11 @@ router.post('/login', async (req, res) => {
         res.status(403).send("Unknown role");
       }
     } else {
-      res.status(401).send("Invalid credentials");
+      res.status(401).send("invalid login credentials");
     }
   } catch (err) {
     console.error(err);
-    res.status(500).send("Database error");
+    res.status(500).send("database error");
   }
 });
 
@@ -48,7 +48,7 @@ router.get('/owner', (req, res) => {
   if (req.session.user?.role === 'owner') {
     res.sendFile(path.join(__dirname, "../public/owner.html"));
   } else {
-    res.status(403).send("Unauthorized");
+    res.status(403).send("unauthorized");
   }
 });
 
@@ -57,7 +57,7 @@ router.get('/walker', (req, res) => {
   if (req.session.user?.role === 'walker') {
     res.sendFile(path.join(__dirname, "../public/walker.html"));
   } else {
-    res.status(403).send("Unauthorized");
+    res.status(403).send("unauthorized");
   }
 });
 
