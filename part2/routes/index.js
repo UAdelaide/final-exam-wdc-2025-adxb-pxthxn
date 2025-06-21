@@ -81,7 +81,7 @@ router.get('/logout', (req, res) => {
   req.session.destroy(err => {
     if (err) {
       console.error("error destroying session:", err);
-      return res.status(500).send("Failed to logout");
+      return res.status(500).send("failed to logout");
     }
 
     // clear the cookie and redirect to login
