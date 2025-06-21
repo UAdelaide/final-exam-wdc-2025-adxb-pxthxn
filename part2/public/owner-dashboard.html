@@ -101,6 +101,18 @@
           }
         }
 
+              // fetch the owner's dogs from backend
+      async function loadDogs() {
+        try {
+          const res = await fetch('/api/users/mydogs');
+          if (!res.ok) throw new Error('Failed to load dogs');
+          dogs.value = await res.json(); // populate dropdown
+        } catch (err) {
+          error.value = err.message;
+        }
+      }
+
+
         async function submitWalkRequest() {
           try {
             const res = await fetch('/api/walks', {
