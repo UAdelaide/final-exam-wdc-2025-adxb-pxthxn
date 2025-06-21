@@ -11,7 +11,7 @@ const dbConfig = {
   database: "DogWalkService"
 };
 
-// insert sample data
+// insert sample data, hard coded for now.
 async function seedDatabase(connection) {
   await connection.execute(`DELETE FROM WalkRatings`);
   await connection.execute(`DELETE FROM WalkApplications`);
@@ -19,6 +19,7 @@ async function seedDatabase(connection) {
   await connection.execute(`DELETE FROM Dogs`);
   await connection.execute(`DELETE FROM Users`);
 
+  
   await connection.execute(`
     INSERT INTO Users (username, email, password_hash, role)
     VALUES
