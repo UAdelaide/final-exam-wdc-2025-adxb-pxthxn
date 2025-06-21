@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
-const session = require('express-session'); // added session support for login persistence
 const dogRoutes = require('./routes/dogRoutes');
+const session = require('express-session'); // added session support for login persistence
 
 require('dotenv').config();
 
@@ -28,5 +28,7 @@ const userRoutes = require('./routes/userRoutes');
 app.use('/', indexRoutes); // mounted index route (handles /login, /owner, /walker)
 app.use('/api/walks', walkRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/dogs', dogRoutes);
+
 
 module.exports = app;
