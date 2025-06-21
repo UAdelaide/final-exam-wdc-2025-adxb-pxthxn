@@ -11,25 +11,25 @@ const db = {
   database: "DogWalkService"
 };
 
-// Serve the login page from public/index.html
+// serve the login page from public/index.html
 router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
-// Handle login form submission
+// handle login form submission
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   try {
     const conn = await mysql.createConnection(db);
 
-    // Verify credentials against Users table
+    // berify credentials against Users table
     const [rows] = await conn.execute(
       "SELECT * FROM Users WHERE username = ? AND password_hash = ?",
       [username, password]
     );
 
-    // If valid login
+    // if valid login
     if (rows.length === 1) {
       const user = rows[0];
 
