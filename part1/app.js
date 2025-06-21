@@ -68,6 +68,8 @@ async function seedDatabase(connection) {
 }
 
 // routes
+
+
 app.get("/api/dogs", async (req, res) => {
   try {
     const connection = await mysql.createConnection(dbConfig);
