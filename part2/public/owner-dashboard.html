@@ -140,11 +140,14 @@
         }
 
         onMounted(() => {
+          loadDogs();  // get dogs for dropdown
           loadWalks();
         });
 
         return {
           form,
+          dogs,   // make dogs available to <select>
+
           walks,
           message,
           error,
