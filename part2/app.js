@@ -11,10 +11,11 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(session({
-  secret: 'superdogsecret',
+  secret: 'superdogsecret', // session secret (should be moved to env in production)
   resave: false,
   saveUninitialized: true
-}));
+})); // enabled express-session middleware
+
 
 // route imports
 const indexRoutes = require('./routes/index');
