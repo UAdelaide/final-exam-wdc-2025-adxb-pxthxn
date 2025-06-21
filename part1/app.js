@@ -121,7 +121,7 @@ app.get("/api/walkers/summary", async (req, res) => {
     `);
     res.json(rows);
   } catch (error) {
-    res.status(500).json({ error: "Error fetching walker summaries" });
+    res.status(500).json({ error: "error fetching walker summaries" });
   }
 });
 
@@ -131,8 +131,8 @@ app.get("/api/walkers/summary", async (req, res) => {
     const connection = await mysql.createConnection(dbConfig);
     await seedDatabase(connection);
     console.log("sample data inserted.");
-    app.listen(port, () => console.log(`API listening on http://localhost:${port}`));
+    app.listen(port, () => console.log(`API listening http://localhost:${port}`));
   } catch (err) {
-    console.error("Failed to seed database:", err);
+    console.error("failed to seed database:", err);
   }
 })();
