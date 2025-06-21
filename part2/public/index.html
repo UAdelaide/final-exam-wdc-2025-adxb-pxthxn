@@ -35,31 +35,30 @@
       {{ errorMessage }}
     </div>
 
-    <!-- Dog Table Section -->
-<div class="mt-5">
-  <h2 class="text-secondary mb-3">All Dogs</h2>
-  <table class="table table-bordered align-middle text-center">
-    <thead class="table-light">
-      <tr>
-        <th scope="col">Photo</th>
-        <th scope="col">Dog Name</th>
-        <th scope="col">Size</th>
-        <th scope="col">Owner</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="dog in dogsWithImages" :key="dog.dog_name">
-        <td>
-          <img :src="dog.imageUrl" alt="dog photo" class="img-thumbnail" width="100">
-        </td>
-        <td>{{ dog.dog_name }}</td>
-        <td>{{ dog.size }}</td>
-        <td>{{ dog.owner_username }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
+    <!-- og table section -->
+    <div class="mt-5">
+      <h2 class="text-secondary mb-3">All Dogs</h2>
+      <table class="table table-bordered align-middle text-center">
+        <thead class="table-light">
+          <tr>
+            <th scope="col">Photo</th>
+            <th scope="col">Dog Name</th>
+            <th scope="col">Size</th>
+            <th scope="col">Owner</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="dog in dogsWithImages" :key="dog.dog_name">
+            <td>
+              <img :src="dog.imageUrl" alt="dog photo" class="img-thumbnail" width="100">
+            </td>
+            <td>{{ dog.dog_name }}</td>
+            <td>{{ dog.size }}</td>
+            <td>{{ dog.owner_username }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <script>
