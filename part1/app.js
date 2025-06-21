@@ -84,6 +84,7 @@ app.get("/api/dogs", async (req, res) => {
   }
 });
 
+// dogs route
 app.get("/api/walkrequests/open", async (req, res) => {
   try {
     const connection = await mysql.createConnection(dbConfig);
