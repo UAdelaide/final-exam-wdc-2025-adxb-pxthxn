@@ -103,7 +103,7 @@ app.get("/api/walkrequests/open", async (req, res) => {
   }
 });
 
-// open walk requests route
+// walkers route
 app.get("/api/walkers/summary", async (req, res) => {
   try {
     const connection = await mysql.createConnection(dbConfig);
@@ -125,12 +125,12 @@ app.get("/api/walkers/summary", async (req, res) => {
   }
 });
 
-// Start server and seed DB
+// start server and populate DB
 (async () => {
   try {
     const connection = await mysql.createConnection(dbConfig);
     await seedDatabase(connection);
-    console.log("Sample data inserted.");
+    console.log("sample data inserted.");
     app.listen(port, () => console.log(`API listening on http://localhost:${port}`));
   } catch (err) {
     console.error("Failed to seed database:", err);
