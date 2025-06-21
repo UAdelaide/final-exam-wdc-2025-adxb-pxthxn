@@ -41,7 +41,7 @@ async function seedDatabase(connection) {
     ((SELECT user_id FROM Users WHERE username = 'carol123'), 'Coco', 'small')
   `);
 
-    // Users
+  // WalkRequests
   await connection.execute(`
     INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status)
     VALUES
@@ -52,6 +52,7 @@ async function seedDatabase(connection) {
     ((SELECT dog_id FROM Dogs WHERE name = 'Coco'), '2025-06-12 07:45:00', 20, 'City Park', 'completed')
   `);
 
+  // Users
   await connection.execute(`
     INSERT INTO WalkRatings (request_id, walker_id, owner_id, rating)
     VALUES
