@@ -19,7 +19,7 @@ async function seedDatabase(connection) {
   await connection.execute(`DELETE FROM Dogs`);
   await connection.execute(`DELETE FROM Users`);
 
-  
+  // Users
   await connection.execute(`
     INSERT INTO Users (username, email, password_hash, role)
     VALUES
@@ -30,6 +30,7 @@ async function seedDatabase(connection) {
     ('emily123', 'emily@example.com', 'hashed654', 'owner')
   `);
 
+  // Dogs
   await connection.execute(`
     INSERT INTO Dogs (owner_id, name, size)
     VALUES
@@ -40,6 +41,7 @@ async function seedDatabase(connection) {
     ((SELECT user_id FROM Users WHERE username = 'carol123'), 'Coco', 'small')
   `);
 
+    // Users
   await connection.execute(`
     INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status)
     VALUES
