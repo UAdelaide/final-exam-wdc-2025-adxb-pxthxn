@@ -3,6 +3,13 @@ const router = express.Router();
 const path = require('path');
 const mysql = require('mysql2/promise');
 
+const db = {
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "DogWalkService"
+};
+
 // GET / => index.html
 router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
