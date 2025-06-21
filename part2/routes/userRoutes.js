@@ -59,7 +59,7 @@ router.post('/login', async (req, res) => {
 router.get('/mydogs', async (req, res) => {
   // reject if user not logged in or not an owner
   if (!req.session.user || req.session.user.role !== 'owner') {
-    return res.status(403).json({ error: 'Access denied' });
+    return res.status(403).json({ error: 'access denied' });
   }
 
   const ownerId = req.session.user.id;
@@ -75,7 +75,7 @@ router.get('/mydogs', async (req, res) => {
     res.json(rows);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Failed to fetch dogs' });
+    res.status(500).json({ error: 'failed to fetch dogs' });
   }
 });
 
