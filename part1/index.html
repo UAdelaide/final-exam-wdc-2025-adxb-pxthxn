@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DOGZONE XTREME</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    body {
+      font-family: Comic Sans MS;
+      background: radial-gradient(circle, lime, magenta, cyan);
+      animation: spin 5s infinite linear;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    .dog-section {
+      margin-top: 2000px; /* Excessive scrolling */
+    }
+
+    .flashing-text {
+      color: red;
+      animation: blink 0.2s infinite alternate;
+    }
+
+    @keyframes blink {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .dog-img {
+      width: 800px;
+      border: 10px dashed yellow;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1 class="flashing-text">DOG OF THE DAY - CLICK IMMEDIATELY</h1>
+    <button @click="loadDog" style="font-size: 30px;">Fetch Random Dog</button>
+
+    <div class="dog-section">
+      <img :src="dogImage" class="dog-img">
+      <p>This is our featured dog: MAXXXX. He is <b>GOOD</b>.</p>
+    </div>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          dogImage: ""
+        }
+      },
+      methods: {
+        async loadDog() {
+          const res = await fetch("https://dog.ceo/api/breeds/image/random");
+          const data = await res.json();
+          this.dogImage = data.message;
+        }
+      }
+    }).mount("#app");
+  </script>
+</body>
+</html>
