@@ -6,7 +6,7 @@ require('dotenv').config();
 const app = express();
 
 // middleware
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); // added to handle form submissions (e.g., login POST)
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
 
