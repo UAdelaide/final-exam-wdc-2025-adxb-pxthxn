@@ -14,7 +14,7 @@ app.use(session({
   secret: 'superdogsecret', // session secret (would move to .env if this was a meanigful piece of work)
   resave: false,
   saveUninitialized: true
-})); // enabled express-session middleware
+})); //  express-session middleware
 
 
 // route imports
