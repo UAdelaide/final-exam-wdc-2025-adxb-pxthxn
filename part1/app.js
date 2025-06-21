@@ -80,7 +80,7 @@ app.get("/api/dogs", async (req, res) => {
     `);
     res.json(rows);
   } catch (error) {
-    res.status(500).json({ error: "Error fetching dogs" });
+    res.status(500).json({ error: "error fetching dogs" });
   }
 });
 
@@ -99,7 +99,7 @@ app.get("/api/walkrequests/open", async (req, res) => {
     `);
     res.json(rows);
   } catch (error) {
-    res.status(500).json({ error: "Error fetching open walk requests" });
+    res.status(500).json({ error: "error fetching open walkrequests" });
   }
 });
 
