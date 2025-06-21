@@ -18,12 +18,12 @@ app.use(session({
 
 
 // route imports
-const indexRoutes = require('./routes/index');
+const indexRoutes = require('./routes/index'); // added new route for login and dashboard handling
 const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
 
 // route mounting
-app.use('/', indexRoutes);
+app.use('/', indexRoutes); // mounted index route (handles /login, /owner, /walker)
 app.use('/api/walks', walkRoutes);
 app.use('/api/users', userRoutes);
 
