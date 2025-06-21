@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const session = require('express-session'); // added session support for login persistence
+const dogRoutes = require('./routes/dogRoutes');
+
 require('dotenv').config();
 
 const app = express();
