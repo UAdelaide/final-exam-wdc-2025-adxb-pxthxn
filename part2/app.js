@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(session({
-  secret: 'superdogsecret', // session secret (should be moved to env in production)
+  secret: 'superdogsecret', // session secret (would move to .env if this was a meanigful piece of work)
   resave: false,
   saveUninitialized: true
 })); // enabled express-session middleware
