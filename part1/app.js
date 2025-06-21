@@ -3,14 +3,15 @@ const mysql = require("mysql2/promise");
 const app = express();
 const port = 3000;
 
+// connfigure connection to database
 const dbConfig = {
   host: "localhost",
   user: "root",
-  password: "", // your DB password here
-  database: "DogWalkService",
+  password: "",
+  database: "DogWalkService"
 };
 
-// Insert sample data
+// insert sample data
 async function seedDatabase(connection) {
   await connection.execute(`DELETE FROM WalkRatings`);
   await connection.execute(`DELETE FROM WalkApplications`);
