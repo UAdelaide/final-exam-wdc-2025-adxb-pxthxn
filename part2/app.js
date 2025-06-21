@@ -5,8 +5,8 @@ require('dotenv').config();
 
 const app = express();
 
-// Middleware
-app.use(express.urlencoded({ extended: true })); // To parse form POSTs
+// middleware
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
 
@@ -16,13 +16,13 @@ app.use(session({
   saveUninitialized: true
 }));
 
-// Route imports
-const indexRoutes = require('./routes/index'); // <-- Your login + dashboard routes
+// route imports
+const indexRoutes = require('./routes/index');
 const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
 
-// Route mounting
-app.use('/', indexRoutes); 
+// route mounting
+app.use('/', indexRoutes);
 app.use('/api/walks', walkRoutes);
 app.use('/api/users', userRoutes);
 
