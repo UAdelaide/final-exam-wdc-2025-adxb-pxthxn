@@ -80,7 +80,7 @@ router.get('/walker', (req, res) => {
 router.get('/logout', (req, res) => {
   req.session.destroy(err => {
     if (err) {
-      console.error("Error destroying session:", err);
+      console.error("error destroying session:", err);
       return res.status(500).send("Failed to logout");
     }
 
