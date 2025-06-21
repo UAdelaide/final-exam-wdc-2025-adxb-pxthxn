@@ -53,7 +53,7 @@ router.post('/login', async (req, res) => {
 // GET /owner
 router.get('/owner', (req, res) => {
   if (req.session.user?.role === 'owner') {
-    res.sendFile(path.join(__dirname, "../public/owner.html"));
+    res.sendFile(path.join(__dirname, "../public/owner-dashboard.html"));
   } else {
     res.status(403).send("unauthorized");
   }
@@ -62,7 +62,7 @@ router.get('/owner', (req, res) => {
 // GET /walker
 router.get('/walker', (req, res) => {
   if (req.session.user?.role === 'walker') {
-    res.sendFile(path.join(__dirname, "../public/walker.html"));
+    res.sendFile(path.join(__dirname, "../public/walker-dashboard.html"));
   } else {
     res.status(403).send("unauthorized");
   }
